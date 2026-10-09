@@ -9,8 +9,14 @@ interface ICategories {
 }
 
 const NavLink = async () => {
-  const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+  // Api Link 2
+  // const res = await fetch(
+  //   "https://api.abcz.workers.dev/api/bazardor/categories",
+  // );
+
+  // Api Link 1
+    const res = await fetch(
+    "https://api.api-store.workers.dev/api/bazardor/categories",
   );
   const data: ICategories[] = await res.json();
   // console.log(data);

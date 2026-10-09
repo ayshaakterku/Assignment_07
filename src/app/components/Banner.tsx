@@ -4,7 +4,7 @@ import React from "react";
 
 const Banner = () => {
   const date = new Date().toLocaleDateString("bn-BD", { dateStyle: "full" });
-  console.log(date);
+  // console.log(date);
 
   return (
     <section className="bg-[#f1f7f2] border-base-300 rounded-2xl mt-5 w-full">
