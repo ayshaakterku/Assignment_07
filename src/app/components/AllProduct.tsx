@@ -1,6 +1,7 @@
 import React from "react";
 import { IProductAll } from "../types";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 interface IAllProduct {
   products: IProductAll[];
@@ -15,7 +16,9 @@ const AllProduct = ({ products }: IAllProduct) => {
       <p>মোট {products.length.toLocaleString("Bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.map((item) => (
-          <ProductCard key={item.id} item={item}></ProductCard>
+          <Link key={item.id} href={`/itemDetails/${item.id}`}>
+            <ProductCard item={item}></ProductCard>
+          </Link>
         ))}
       </div>
     </section>

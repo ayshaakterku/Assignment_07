@@ -16,7 +16,8 @@ const CategoryPage = async ({
 
   const order: SortOrder | undefined =
     sort === "asc" || sort === "desc" ? sort : undefined;
-// Api Link 1
+
+  // Api Link 1
   const res = await fetch(
     `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
   );
@@ -35,10 +36,10 @@ const CategoryPage = async ({
 
   const sortLabel =
     order === "asc"
-      ? "দাম: কম → বেশি"
+      ? "দাম: কম থেকে বেশি"
       : order === "desc"
-        ? "দাম: বেশি → কম"
-        : "সাজান";
+        ? "দাম: বেশি থেকে কম"
+        : "ডিফল্ট";
 
   return (
     <div>
@@ -53,39 +54,50 @@ const CategoryPage = async ({
       </div>
 
       {/* Sorting */}
-      <div className="mt-5 flex items-center gap-2">
-        <span className="font-semibold">সাজান:</span>
+      <div className="mt-5 flex justify-between items-center gap-2 bg-[#f1f7f2] py-3 px-2 rounded-2xl">
+        <p>মোট {data.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে</p>
+        <div className="flex items-center">
+          <span className="font-semibold">সাজান:</span>
 
-        <div className="dropdown dropdown-bottom">
-          <div tabIndex={0} role="button" className="btn btn-sm m-1">
-            {sortLabel} ⬇️
-          </div>
-          <ul
-            tabIndex={-1}
-            className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
-          >
-            <li>
-              <Link href="?sort=asc" className={order === "asc" ? "menu-active" : ""}>
-                দাম: কম → বেশি
-              </Link>
-            </li>
-            <li>
-              <Link href="?sort=desc" className={order === "desc" ? "menu-active" : ""}>
-                দাম: বেশি → কম
-              </Link>
-            </li>
-            {order && (
+          <div className="dropdown dropdown-bottom">
+            <div tabIndex={0} role="button" className="btn btn-sm m-1">
+              {sortLabel} ⮟
+            </div>
+            <ul
+              tabIndex={-1}
+              className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-sm"
+            >
               <li>
-                <Link href="?">রিসেট</Link>
+                <Link
+                  href="?sort=asc"
+                  className={order === "asc" ? "menu-active" : ""}
+                >
+                  দাম: কম থেকে বেশি
+                </Link>
               </li>
-            )}
-          </ul>
+              <li>
+                <Link
+                  href="?sort=desc"
+                  className={order === "desc" ? "menu-active" : ""}
+                >
+                  দাম: বেশি থেকে কম
+                </Link>
+              </li>
+              {order && (
+                <li>
+                  <Link href="?">ডিফল্ট</Link>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
         {products.map((item) => (
-          <ProductCard key={item.id} item={item} />
+          <Link key={item.id} href={`/itemDetails/${item.id}`}>
+            <ProductCard item={item} />
+          </Link>
         ))}
       </div>
     </div>

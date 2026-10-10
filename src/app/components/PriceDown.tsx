@@ -1,6 +1,7 @@
 import React from "react";
 import { IProductAll } from "../types";
 import ProductCard from "./ProductCard";
+import Link from "next/link";
 
 interface IPriceDown {
   products: IProductAll[];
@@ -22,7 +23,7 @@ const PriceDown = ({ products }: IPriceDown) => {
     // return b.change.pct - a.change.pct;
   });
 
-//   console.log("sortedPriceLow: ", sortedPriceLow.slice(0, 6));
+  //   console.log("sortedPriceLow: ", sortedPriceLow.slice(0, 6));
   const sortedPriceLowSlice = sortedPriceLow.slice(0, 6);
 
   return (
@@ -32,11 +33,12 @@ const PriceDown = ({ products }: IPriceDown) => {
         আজ দাম কমেছে
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {
-            sortedPriceLowSlice.map(item=> <ProductCard key={item.id} item={item}></ProductCard>)
-        }
-        </div>
-
+        {sortedPriceLowSlice.map((item) => (
+          <Link key={item.id} href={`/itemDetails/${item.id}`}>
+            <ProductCard item={item}></ProductCard>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 };
