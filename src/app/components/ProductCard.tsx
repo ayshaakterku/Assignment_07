@@ -20,7 +20,7 @@ const ProductCard = ({ item }: IProduct) => {
       </div>
 
       {/* Bottom: price + change */}
-      <div className="mt-4 flex items-end justify-between">
+      <div className="mt-4 flex items-end justify-between" id="all">
         <div>
           <p className="text-xs text-gray-500">আজকের দাম</p>
           <h2 className="text-2xl font-bold text-gray-900">

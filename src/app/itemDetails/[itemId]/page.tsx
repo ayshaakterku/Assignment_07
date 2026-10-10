@@ -1,21 +1,27 @@
-import { IProductAll } from '@/app/types';
-import React from 'react';
+import { notFound } from "next/navigation";
 
-const ItemDetails = async({params}:{params:{itemId:string}}) => {
-    const { itemId } = await params;
+import type { IProductAll } from "@/app/types";
+import ProductDetailsCard from "@/app/components/ProductDetails";
 
-    
-    // api link 1
-    const res = await fetch(`https://api.api-store.workers.dev/api/bazardor/products/${itemId}`);
-    const data:IProductAll[] =await res.json();
-    console.log(data);
-    
+const ItemDetails = async ({
+  params,
+}: {
+  params: Promise<{ itemId: string }>;
+}) => {
+  const { itemId } = await params;
 
-    return (
-        <div>
-            ItemDetails
-        </div>
-    );
+  const res = await fetch(
+    `https://api.api-store.workers.dev/api/bazardor/products/${itemId}`,
+    { next: { revalidate: 300 } }, // refresh prices every 5 minutes
+  );
+  if (!res.ok) notFound();
+
+  const json = await res.json();
+  // Works whether the API returns one object or an array
+  const product: IProductAll | undefined = Array.isArray(json) ? json[0] : json;
+  if (!product) notFound();
+
+  return <ProductDetailsCard product={product} />;
 };
 
 export default ItemDetails;

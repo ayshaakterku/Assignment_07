@@ -25,7 +25,7 @@ const Banner = () => {
           </p>
 
           <Link
-            href="/products"
+            href="#all-products"
             className="inline-block bg-[#0a8a3f] hover:bg-[#087535] text-white text-sm font-semibold px-5 py-2.5 rounded-md shadow-md shadow-green-900/20 transition-colors"
           >
             সব পণ্য দেখুন

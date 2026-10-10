@@ -11,7 +11,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur">
   <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
     {/* Logo + title */}
-    <Link href="/" className="flex items-center gap-3">
+    <Link href="/#top" className="flex items-center gap-3">
       <Image
         className="rounded-2xl border border-gray-50 bg-green-700 p-2"
         src="/logo-icon.png"
