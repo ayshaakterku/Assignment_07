@@ -1,3 +1,31 @@
+## Project Name: BazarDor – Daily Market Price Tracker
+
+## 📝 Project Description
+**BazarDor** is a web application designed to help people in Bangladesh stay updated on the daily market prices of essential commodities. It makes shopping easier by providing price information and market trends, helping users make informed purchasing decisions.
+
+## 🛠️ Technologies Used
+- **Frontend:** Next.js, React, TypeScript
+- **Styling:** Tailwind CSS, DaisyUI
+- **Backend:** Node.js, REST API
+- **Database:** MongoDB
+- **Authentication:** Better Auth
+
+## ✨5 Key Features:
+1. **Daily Market Price Updates:** Stay informed about the latest prices of essential commodities across Bangladesh.
+
+2. **Price Trend Analysis:** Track price increases and decreases to understand daily market fluctuations.
+
+3. **Category-Based Products:** Browse essential commodities by category, including vegetables, fruits, fish, meat, rice, and more.
+
+4. **User Authentication:** Securely register, sign in, and manage user accounts using Better Auth.
+
+5. **Interactive Price Indicators:** Quickly identify price changes through visual indicators that highlight price increases and decreases.
+
+
+
+**--------------------------------------------------------------------------------------------------------------**
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
