@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 interface ICategories {
   id: string;
@@ -9,10 +10,15 @@ interface ICategories {
 }
 
 const NavLink = async () => {
-  // Api Link 2
-  const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+  // Api Link 3
+    const res = await fetch(
+    "https://openapi.programming-hero.com/api/bazardor/categories",
   );
+
+  // Api Link 2
+  // const res = await fetch(
+  //   "https://api.abcz.workers.dev/api/bazardor/categories",
+  // );
 
   // Api Link 1
   //   const res = await fetch(
@@ -20,10 +26,13 @@ const NavLink = async () => {
   // );
   const data: ICategories[] = await res.json();
   // console.log(data);
+  if (!data){
+    notFound()
+  }
 
   return (
     <div className="border-y border-gray-100 bg-green-50/40">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 overflow-x-auto px-6 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="mx-auto flex max-w-7xl items-center  gap-6 overflow-x-auto px-6 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {data.map((item, ind) => (
           <Link key={ind} href={`/category/${item.slug}`}>
             <div className="shrink-0">

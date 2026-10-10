@@ -4,10 +4,14 @@ import { IProductAll } from "./types";
 import PriceUp from "./components/PriceUp";
 import PriceDown from "./components/PriceDown";
 import AllProduct from "./components/AllProduct";
+import { notFound } from "next/navigation";
 
 export default async function Home() {
+  // Api Link 3
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
+
   // Api Link 2
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  // const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
 
   // Api Link 1
   // const res = await fetch(
@@ -15,7 +19,9 @@ export default async function Home() {
   // );
 
   const data: IProductAll[] = await res.json();
-
+  if (!data) {
+    notFound();
+  }
   //   console.log(data);
 
   return (

@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Marquee from "./components/Marquee";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
+import { Bounce, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
@@ -26,7 +28,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <Marquee />
 
-        <main className="mx-auto w-full max-w-7xl flex-1">{children}</main>
+        <main className="mx-auto w-full max-w-7xl flex-1">
+          {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={1000}
+            hideProgressBar
+            closeOnClick
+            pauseOnHover
+            draggable
+            theme="light"
+            transition={Bounce}
+          />
+        </main>
 
         <Footer />
       </body>

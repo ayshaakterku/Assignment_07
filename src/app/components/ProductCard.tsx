@@ -6,6 +6,7 @@ interface IProduct {
 }
 
 const ProductCard = ({ item }: IProduct) => {
+  // console.log(item.unit);
   return (
     <div className="rounded-xl border border-green-900/10 bg-[#f1f7f2] p-4 shadow-sm hover:shadow-md transition-shadow">
       {/* Top: icon + name */}
@@ -15,7 +16,16 @@ const ProductCard = ({ item }: IProduct) => {
         </span>
         <div>
           <h2 className="font-bold text-lg leading-tight">{item.nameBn}</h2>
-          <p className="text-sm text-gray-500">প্রতি কেজি</p>
+          <p className="text-sm text-gray-500">
+            প্রতি{" "}
+            {{
+              kg: "কেজি",
+              liter: "লিটার",
+              litre: "লিটার",
+              dozen: "ডজন",
+              piece: "পিস",
+            }[item.unit.trim().toLowerCase()] || item.unit}
+          </p>
         </div>
       </div>
 

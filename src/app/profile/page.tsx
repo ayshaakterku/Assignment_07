@@ -1,8 +1,9 @@
-
 "use client";
 import React, { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 const ProfilePage = () => {
   const { data: session } = authClient.useSession();
@@ -19,13 +20,7 @@ const ProfilePage = () => {
     setMessage("");
   };
 
-  const handleSignOut = async () => {
-    await authClient.signOut();
-  };
-
-  const handleUpdateProfile = async (
-    e: React.SubmitEvent<HTMLFormElement>
-  ) => {
+  const handleUpdateProfile = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage("");
 
@@ -47,6 +42,7 @@ const ProfilePage = () => {
       }
 
       setMessage("Profile updated successfully!");
+      toast.success("Profile updated successfully!");
       setShow(false);
     } catch (error) {
       setMessage("Something went wrong. Please try again.");
@@ -63,9 +59,11 @@ const ProfilePage = () => {
           <div className="avatar">
             <div className="w-10 overflow-hidden rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
               {user?.image ? (
-                <img
+                <Image
                   alt={user.name?.slice(0, 1) || "User"}
                   src={user.image}
+                  width={20}
+                  height={20}
                   className="h-full w-full object-cover"
                 />
               ) : (
@@ -84,9 +82,7 @@ const ProfilePage = () => {
           {show ? "Cancel" : "Edit Profile"}
         </button>
 
-        {message && (
-          <p className="text-sm text-center">{message}</p>
-        )}
+        {message && <p className="text-sm text-center">{message}</p>}
 
         {show && (
           <form onSubmit={handleUpdateProfile}>

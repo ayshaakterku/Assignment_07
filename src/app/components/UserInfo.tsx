@@ -1,9 +1,11 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import { router } from "better-auth/api";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+import { toast } from "react-toastify";
 
 const UserInfo = () => {
   // const data = authClient.useSession()
@@ -14,7 +16,8 @@ const UserInfo = () => {
 
   const handleSignOut = async () => {
     await authClient.signOut();
-    redirect('/')
+    toast.success("Successfully Sign Out")
+    redirect('/#top')
   };
 
   return (
@@ -34,9 +37,11 @@ const UserInfo = () => {
                 <div className="avatar">
                   <div className="w-10 overflow-hidden rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
                     {user.image ? (
-                      <img
+                      <Image
                         alt={user.name?.slice(0, 1) || "User"}
                         src={user.image}
+                        width={20}
+                        height={20}
                         className="h-full w-full object-cover"
                       />
                     ) : (

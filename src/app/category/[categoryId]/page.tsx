@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ProductCard from "@/app/components/ProductCard";
 import { IProductAll } from "@/app/types";
+import { notFound } from "next/navigation";
 
 type SortOrder = "asc" | "desc";
 
@@ -17,15 +18,31 @@ const CategoryPage = async ({
   const order: SortOrder | undefined =
     sort === "asc" || sort === "desc" ? sort : undefined;
 
-  // Api Link 1
+  // Api Link 3
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+    `https://openapi.programming-hero.com/api/bazardor/products?category=${categoryId}`,
   );
-  const data: IProductAll[] = await res.json();
 
-  if (!data.length) {
-    return <p className="mt-5">কোনো পণ্য পাওয়া যায়নি।</p>;
-  }
+  // Api Link 2
+  // const res = await fetch(
+  //   `https://api.abcz.workers.dev/api/bazardor/products?category=${categoryId}`,
+  // );
+
+  // Api Link 1
+  // const res = await fetch(
+  //   `https://api.api-store.workers.dev/api/bazardor/products?category=${categoryId}`,
+  // );
+  const data: IProductAll[] = await res.json();
+  if (!data.length) notFound();
+  // if (!data.length) {
+  //   return (
+  //     <div className="flex min-h-[50vh] items-center justify-center">
+  //       <h1 className="mt-5 font-bold text-4xl text-red-500">
+  //         কোনো পণ্য পাওয়া যায়নি।
+  //       </h1>
+  //     </div>
+  //   );
+  // }
 
   // copy first so the original array is not mutated
   const products = order
