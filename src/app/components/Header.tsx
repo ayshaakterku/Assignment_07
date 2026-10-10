@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import NavLink from "./NavLink";
+import UserInfo from "./UserInfo";
 
 
 const Header = () => {
@@ -27,7 +28,7 @@ const Header = () => {
     </Link>
 
     {/* Auth buttons */}
-    <nav className="flex items-center gap-2" aria-label="Authentication">
+    {/* <nav className="flex items-center gap-2" aria-label="Authentication">
       <Link href="/signin" className="btn btn-ghost btn-sm sm:btn-md">
         সাইন ইন
       </Link>
@@ -37,7 +38,8 @@ const Header = () => {
       >
         সাইন আপ
       </Link>
-    </nav>
+    </nav> */}
+    <UserInfo/>
   </div>
   <NavLink/>
 </header>

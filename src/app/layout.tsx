@@ -6,7 +6,6 @@ import Marquee from "./components/Marquee";
 import Banner from "./components/Banner";
 import Footer from "./components/Footer";
 
-
 const notoSerifBengali = Noto_Serif_Bengali({
   subsets: ["latin", "bengali"],
 });
@@ -21,14 +20,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="light"
-      className={`${notoSerifBengali.className} h-full antialiased scroll-smooth`}
+      className={`${notoSerifBengali.className} min-h-full scroll-smooth antialiased`}
     >
-      {/* flex flex-col */}
-      <body className="min-h-full">
-        <Header/>
-        <Marquee/>
-        <main className="max-w-7xl mx-auto">{children}</main>
-        <Footer/>
+      <body className="flex min-h-screen flex-col">
+        <Header />
+        <Marquee />
+
+        <main className="mx-auto w-full max-w-7xl flex-1">{children}</main>
+
+        <Footer />
       </body>
     </html>
   );
