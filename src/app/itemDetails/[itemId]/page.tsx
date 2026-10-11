@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import type { IProductAll } from "@/app/types";
 import ProductDetailsCard from "@/app/components/ProductDetails";
 
+interface Apierror{
+  error: string
+}
+
 const ItemDetails = async ({
   params,
 }: {
@@ -22,7 +26,8 @@ const ItemDetails = async ({
   // if (!res.ok) notFound();
 
   const data:IProductAll = await res.json();
-  if(!data)notFound();
+  // if(!data)notFound();
+  if (!data || "error" in data) notFound();
   // console.log(data);
   // Works whether the API returns one object or an array
   // const product: IProductAll | undefined = Array.isArray(json) ? json[0] : json;
